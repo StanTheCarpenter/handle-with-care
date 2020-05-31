@@ -6,7 +6,6 @@ credits = {}
 
 function credits.init()
 	cls()
-	
 end
 
 function credits.update()
@@ -14,13 +13,12 @@ function credits.update()
 end
 
 function credits.draw()
-cls()
-	spr(80,56+5,71)
-	spr(81,64+5,71)
+	cls()
+		spr(80,56+5,71)
+		spr(81,64+5,71)
 	
-	
-	spr(86,40+5,71)
-	spr(87,48+5,71)
+		spr(86,40+5,71)
+		spr(87,48+5,71)
 	
 		i = flr(2*time()%2)
 if i == 0 then
@@ -32,7 +30,6 @@ if i == 0 then
    --krampus
    spr(70,40+5,63)
    spr(71,48+5,63)
-   
       
 elseif i == 1 then
 		
@@ -43,14 +40,14 @@ elseif i == 1 then
   --krampus
 		spr(72,40+5,63)
   spr(73,48+5,63)	
-
   
 end
-local s = 128/3+5
-local t = 128/3+2
-print("made by",s+1,t+1)	
-print("krampus",s+1,t+7)
-print(" & stan",s+1,t+13)
+
+	local s = 128/3+5
+	local t = 128/3+2
+	print("made by",s+1,t+1)	
+	print("krampus",s+1,t+7)
+	print(" & stan",s+1,t+13)
 	
 end
 -->8
