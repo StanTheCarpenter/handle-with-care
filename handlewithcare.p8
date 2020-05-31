@@ -98,31 +98,31 @@ items = {}
 items[1] = {
 	img = 17,
 	x = 1,
-	y = 8*8,
+	y = 3*8,
 	act = function() water+=1 end
 	}
 items[2] = {
 	img = 18,
 	x = 1,
-	y = 8*8,
+	y = 4*8,
 	act = function() sport+=1 end
 	}
 items[3] = {
 	img = 20,
 	x = 1,
-	y = 8*8,
+	y = 5*8,
 	act = function() hygiene+=1 end
 	}
 items[4] = {
 	img = 21,
 	x = 1,
-	y = 8*8,
+	y = 6*8,
 	act = function() food+=1 end
 	}
 items[5] = {
 	img = 22,
 	x = 1,
-	y = 8*8,
+	y = 7*8,
 	act = function() study+=1 end
 	}
 -->8
