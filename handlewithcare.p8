@@ -2,16 +2,18 @@ pico-8 cartridge // http://www.pico-8.com
 version 27
 __lua__
 --credits
-function credits_init()
+credits = {}
+
+function credits.init()
 	cls()
 	
 end
 
-function credits_update()
-		
+function credits.update()
+		if btn(❎) then set_state(game) end
 end
 
-function credits_draw()
+function credits.draw()
 cls()
 	spr(80,56+5,71)
 	spr(81,64+5,71)
@@ -52,18 +54,41 @@ print(" & stan",s+1,t+13)
 	
 end
 -->8
---game
+--main
+
+state = credits
+
+function set_state(new_state)
+	state = new_state
+	state.init()
+end
 
 function _init()
-credits_init()
+state.init()
 end
 
 function _update()
-credits_update()
+state.update()
 end
 
 function _draw()
-credits_draw()
+state.draw()
+end
+-->8
+--game
+game = {}
+
+function game.init()
+
+end
+
+function game.update()
+
+end
+
+function game.draw()
+	cls()
+	print("hello world",1,1)
 end
 __gfx__
 0000000099999999ffffffffddddddddffddddddfd44444454444544776666770000000000000000000000000000000000000000000000000000000000000000
