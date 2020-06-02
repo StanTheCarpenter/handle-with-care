@@ -77,6 +77,7 @@ game = {}
 
 function game.init()
 	player.init()
+	items_init()
 end
 
 function game.update()
@@ -90,6 +91,10 @@ function game.update()
 		gy = player.y - 1
 	elseif btn(⬇️) then
 		gy = player.y + 1
+	end
+	
+	if btn(🅾️) and not oldz then
+		game.init()
 	end
 	
 	local item_prsd = false
@@ -112,6 +117,10 @@ function game.update()
 		player.x = gx
 		player.y = gy
 	end
+	
+	player.update()
+	
+	oldz = btn(🅾️)
 end
 
 function game.draw()
@@ -142,41 +151,43 @@ end
 
 items = {}
 
+function items_init()
 items[1] = {
 	img = {17,33},
 	x = 1,
 	y = 3*8,
 	mode = 1,
-	act = function() player.stats[player.water].val = 5 end
+	act = function() player.stats[player.water].val += 3 end
 	}
 items[2] = {
 	img = {18,34},
 	x = 1,
 	y = 6*8,
 	mode = 1,
-	act = function() player.stats[player.sport].val = 5 end
+	act = function() player.stats[player.sport].val += 3 end
 	}
 items[3] = {
 	img = {20,36},
 	x = 1,
 	y = 9*8,
 	mode = 1,
-	act = function() player.stats[player.clean].val = 5 end
+	act = function() player.stats[player.clean].val += 3 end
 	}
 items[4] = {
 	img = {21,37},
 	x = 120,
 	y = 3*8,
 	mode = 1,
-	act = function() player.stats[player.foods].val = 5 end
+	act = function() player.stats[player.foods].val += 3 end
 	}
 items[5] = {
 	img = {22,38},
 	x = 120,
 	y = 6*8,
 	mode = 1,
-	act = function() player.stats[player.study].val = 5 end
+	act = function() player.stats[player.study].val += 3 end
 	}
+end
 -->8
 --player
 player = {}
@@ -204,6 +215,12 @@ function player.init()
 	player.study = 5
 	
 	player.spoons = player.max_spoons
+end
+
+function player.update()
+	for k,v in pairs(player.stats) do
+		if v.val > 5 then v.val = 5 end
+	end
 end
 
 -->8
