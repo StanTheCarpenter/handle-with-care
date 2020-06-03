@@ -285,9 +285,9 @@ function player.update()
 	for k,v in pairs(items) do
 		local l, a = len(v.x,v.y,gx,gy)
 		if l < 8 and v.room == room  then
-			if (btn(🅾️) and not oldz) and
+			if (btn(❎) and not oldx) and
 			(not v.mode or v.mode < #v.img) 
-			and player.spoons > 0 then
+			and player.spoons >= v.spoon then
 				v.act()
 				if v.mode and v.mode < #v.img then 
 				v.mode += 1 end
@@ -305,7 +305,7 @@ function player.update()
 		player.y = gy
 	end
 	
-	oldz = btn(🅾️)
+	oldx = btn(❎)
 end
 
 -->8
