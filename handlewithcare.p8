@@ -336,9 +336,10 @@ function player.update()
 				end
 				if room == 2 and
 				v.mode == #v.img then
-				local highstat = player.stats[1]
+				local highstat = {val = 0}
 					for k2,s in pairs(player.stats) do
-						if s.val > highstat.val then
+						if s.val > highstat.val and
+						not s.free then
 							highstat = s
 						end
 					end
