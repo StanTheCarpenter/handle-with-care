@@ -9,7 +9,7 @@ function credits.init()
 end
 
 function credits.update()
-		if btn(❎) then game.init(); set_state(kamer) end
+		if btn(❎) then game.init(); set_state(kamer); sfx(00) end
 end
 
 function credits.draw()
@@ -130,7 +130,7 @@ items[1] = {
 	mode = 1,
 	room = 1,
 	spoon = 1,
-	act = function() player.stats[player.water].val += 3 end
+	act = function() player.stats[player.water].val += 3; sfx(01) end
 	}
 items[2] = {
 	img = {18,34},
@@ -139,7 +139,7 @@ items[2] = {
 	mode = 1,
 	room = 1,
 	spoon = 1,
-	act = function() player.stats[player.sport].val += 3 end
+	act = function() player.stats[player.sport].val += 3; sfx(01) end
 	}
 items[3] = {
 	img = {20,36},
@@ -148,7 +148,7 @@ items[3] = {
 	mode = 1,
 	room = 1,
 	spoon = 1,
-	act = function() player.stats[player.clean].val += 3 end
+	act = function() player.stats[player.clean].val += 3; sfx(01) end
 	}
 items[4] = {
 	img = {21,37},
@@ -157,7 +157,7 @@ items[4] = {
 	mode = 1,
 	room = 1,
 	spoon = 1,
-	act = function() player.stats[player.foods].val += 3 end
+	act = function() player.stats[player.foods].val += 3; sfx(01) end
 	}
 items[5] = {
 	img = {22,38},
@@ -166,7 +166,7 @@ items[5] = {
 	mode = 1,
 	room = 1,
 	spoon = 1,
-	act = function() player.stats[player.study].val += 3 end
+	act = function() player.stats[player.study].val += 3; sfx(01) end
 	}
 items[6] = {
 	img = {26,26},
@@ -174,7 +174,7 @@ items[6] = {
 	y = 5*8,
 	room = 1,
 	spoon = 0,
-	act = function() set_state(kas) end
+	act = function() set_state(kas); sfx(02) end
 	}
 items[7] = {
 	img = {26,26},
@@ -182,7 +182,7 @@ items[7] = {
 	y = 8*8,
 	room = 2,
 	spoon = 0,
-	act = function() set_state(kamer) end
+	act = function() set_state(kamer); sfx(02) end
 	}
 items[8] = {
 	img = {48,49,50,rnd(9)+50},
@@ -191,7 +191,7 @@ items[8] = {
 	room = 2,
 	mode = 1,
 	spoon = 0,
-	act = function() end
+	act = function(); sfx(03) end
 	}
 items[9] = {
 	img = {48,49,50,rnd(9)+50},
@@ -200,7 +200,7 @@ items[9] = {
 	room = 2,
 	mode = 1,
 	spoon = 0,
-	act = function() end
+	act = function(); sfx(03) end
 	}
 items[10] = {
 	img = {48,49,50,rnd(9)+50},
@@ -209,7 +209,7 @@ items[10] = {
 	room = 2,
 	mode = 1,
 	spoon = 0,
-	act = function() end
+	act = function(); sfx(03) end
 	}
 items[11] = {
 	img = {48,49,50,rnd(9)+50},
@@ -218,7 +218,7 @@ items[11] = {
 	room = 2,
 	mode = 1,
 	spoon = 0,
-	act = function() end
+	act = function(); sfx(03) end
 	}
 items[12] = {
 	img = {48,49,50,rnd(9)+50},
@@ -227,7 +227,7 @@ items[12] = {
 	room = 2,
 	mode = 1,
 	spoon = 0,
-	act = function() end
+	act = function(); sfx(03) end
 	}
 end
 -->8
@@ -591,7 +591,10 @@ __map__
 1d1e1e1e1e1e1e1e1e1e1e1e1e1e1e1f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 2d2e2e2e2e2e2e2e2e2e2e2e2e2e2e2f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 __sfx__
-000400000bb500bb500bb500bb500bb5014b5016b5017b5019b5019b5018b5017b500ab500ab500ab500ab5018b501db5021b5023b5024b5024b5024b5020b501fb5009b5009b5009b5009b5009b5009b5009b50
+0004000026050260502000020000200002a0502b0502b0502b0002200006000060000600006000070000700000000000000100001000010000100001000010000100001000010000000000000000000000001000
+00040000191401c140201400010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100
+000600001313018130181302010023100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100001000010000100
+01060000190551d055270550000500005000050000500005000050000500005000050000500005000050000500005000050000500005000050000500005000050000500005000050000500005000050000500005
 __music__
 00 00424344
 
