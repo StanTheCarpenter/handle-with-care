@@ -81,6 +81,18 @@ function game.init()
 	hud_h = 5*8
 end
 
+function next_day()
+	for k,v in pairs(player.stats) do
+		if v.val > 0 then v.val -= 1 end
+		set_spoons()
+	end
+	for k,v in pairs(items) do
+		if v.room == 1 then
+			if v.mode then v.mode = 1 end
+		end
+	end
+end
+
 function set_cam()
 	cam = {}
 	cam.x = flr((128-lvl.w*8)/2)
@@ -229,6 +241,14 @@ items[12] = {
 	spoon = 0,
 	act = function() end
 	}
+items[13] = {
+	img = {35},
+	x = 4*8,
+	y = 6*8,
+	room = 1,
+	spoon = 0,
+	act = function() next_day() end
+	}
 end
 -->8
 --player
@@ -249,13 +269,16 @@ function player.init()
 	player.stats[5] = { val = 0,
 	s = {"s","t","u","d","y"}}
 	
-	player.max_spoons = flr(rnd(3))+2
 	player.water = 1
 	player.foods = 2
 	player.clean = 3
 	player.sport = 4
 	player.study = 5
-	
+	set_spoons()
+	end
+
+function set_spoons()
+	player.max_spoons = flr(rnd(3))+2
 	player.spoons = player.max_spoons
 end
 
@@ -284,7 +307,7 @@ function player.update()
 	local item_prsd = false
 	for k,v in pairs(items) do
 		local l, a = len(v.x,v.y,gx,gy)
-		if l < 8 and v.room == room  then
+		if l < 6 and v.room == room  then
 			if (btn(❎) and not oldx) and
 			(not v.mode or v.mode < #v.img) 
 			and player.spoons >= v.spoon then
