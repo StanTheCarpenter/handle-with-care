@@ -48,7 +48,9 @@ end
 	print("made by",s+1,t+1)
 	print("krampus",s+1,t+7)
 	print(" & stan",s+1,t+13)
-
+	
+		
+	print("no spoons were harmed\nmaking this game",8,110)
 end
 -->8
 --main
@@ -336,7 +338,7 @@ function player.update()
 				end
 				if room == 2 and
 				v.mode == #v.img then
-				local highstat = {val = 0}
+				local highstat = {val = -1}
 					for k2,s in pairs(player.stats) do
 						if s.val > highstat.val and
 						not s.free then
