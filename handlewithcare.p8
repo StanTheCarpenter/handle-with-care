@@ -78,27 +78,27 @@ game = {}
 function game.init()
 	player.init()
 	items_init()
+	hud_h = 5*8
+end
+
+function set_cam()
+	cam = {}
+	cam.x = flr((128-lvl.w*8)/2)
+	cam.y = flr(((128-hud_h)-lvl.h*8)/2)
 end
 
 function game.update()
-	
-	if btn(🅾️) and not oldz then
-		game.init()
-	end
-	
 	player.update()
-	
-	oldz = btn(🅾️)
 end
 
 function game.draw()
 	cls()
-	map(lvl.x,lvl.y,0,0,lvl.w,lvl.h)
+	map(lvl.x,lvl.y,cam.x,cam.y,lvl.w,lvl.h)
 	map(0,11,0,11*8,16,5)
-	spr(player.img,player.x,player.y)
+	spr(player.img,player.x+cam.x,player.y+cam.y)
 	for k,v in pairs(items) do
 		if v.room == room then
-		spr(v.img[v.mode or 1],v.x,v.y)
+		spr(v.img[v.mode or 1],v.x+cam.x,v.y+cam.y)
 		end
 	end
 	
@@ -184,6 +184,51 @@ items[7] = {
 	spoon = 0,
 	act = function() set_state(kamer) end
 	}
+items[8] = {
+	img = {48,49,50,rnd(9)+50},
+	x = 0*8,
+	y = 6*8,
+	room = 2,
+	mode = 1,
+	spoon = 0,
+	act = function() end
+	}
+items[9] = {
+	img = {48,49,50,rnd(9)+50},
+	x = 0*8,
+	y = 3*8,
+	room = 2,
+	mode = 1,
+	spoon = 0,
+	act = function() end
+	}
+items[10] = {
+	img = {48,49,50,rnd(9)+50},
+	x = 6*8,
+	y = 3*8,
+	room = 2,
+	mode = 1,
+	spoon = 0,
+	act = function() end
+	}
+items[11] = {
+	img = {48,49,50,rnd(9)+50},
+	x = 6*8,
+	y = 6*8,
+	room = 2,
+	mode = 1,
+	spoon = 0,
+	act = function() end
+	}
+items[12] = {
+	img = {48,49,50,rnd(9)+50},
+	x = 6*8,
+	y = 9*8,
+	room = 2,
+	mode = 1,
+	spoon = 0,
+	act = function() end
+	}
 end
 -->8
 --player
@@ -221,24 +266,31 @@ function player.update()
 	
 	local gx = player.x
 	local gy = player.y
+	local moving = false
 	if btn(⬅️) then
 		gx = player.x - 1
+		moving = true
 	elseif btn(➡️) then
 		gx = player.x + 1
+		moving = true
 	elseif btn(⬆️) then
 		gy = player.y - 1
+		moving = true
 	elseif btn(⬇️) then
 		gy = player.y + 1
+		moving = true
 	end
 	
 	local item_prsd = false
 	for k,v in pairs(items) do
 		local l, a = len(v.x,v.y,gx,gy)
-		if l < 6 and v.room == room then
-			if not v.mode or v.mode == 1 
+		if l < 8 and v.room == room  then
+			if (btn(🅾️) and not oldz) and
+			(not v.mode or v.mode < #v.img) 
 			and player.spoons > 0 then
 				v.act()
-				if v.mode then v.mode = 2 end
+				if v.mode and v.mode < #v.img then 
+				v.mode += 1 end
 				player.spoons -= v.spoon
 			end
 			item_prsd = true		
@@ -252,6 +304,8 @@ function player.update()
 		player.x = gx
 		player.y = gy
 	end
+	
+	oldz = btn(🅾️)
 end
 
 -->8
@@ -273,6 +327,7 @@ function kas.init()
 	room = 2
 	player.x = 8
 	player.y = 8*8
+	set_cam()
 end
 
 function kas.update()
@@ -294,6 +349,7 @@ function kamer.init()
 	room = 1
 	player.x = 4*8
 	player.y = 5*8
+	set_cam()
 end
 
 function kamer.update()
